@@ -109,33 +109,24 @@ export function CheckoutPage() {
                         </span>
                       </div>
                       
-                      <div className="flex items-center justify-between w-full">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-4 pt-4 border-t border-slate-100">
                         <div className="flex items-center gap-3">
-                          <div className="flex items-center bg-white border border-slate-200 rounded-lg overflow-hidden h-9 shadow-sm">
-                            <button 
-                              onClick={() => updateQuantity(item.id, -1)}
-                              className="w-9 h-full flex items-center justify-center text-slate-600 hover:bg-slate-100 hover:text-electric-blue transition-colors"
-                            >
+                          <div className="flex items-center border border-slate-200 rounded-lg bg-white overflow-hidden shadow-sm">
+                            <button onClick={() => updateQuantity(item.id, -1)} className="px-3 py-1.5 text-slate-500 hover:bg-slate-50 hover:text-electric-blue transition-colors">
                               <Minus className="w-4 h-4" />
                             </button>
-                            <span className="w-10 text-center font-bold text-slate-800">{item.quantity}</span>
-                            <button 
-                              onClick={() => updateQuantity(item.id, 1)}
-                              className="w-9 h-full flex items-center justify-center text-slate-600 hover:bg-slate-100 hover:text-electric-blue transition-colors"
-                            >
+                            <span className="w-8 text-center font-bold text-slate-700 text-sm">{item.quantity}</span>
+                            <button onClick={() => updateQuantity(item.id, 1)} className="px-3 py-1.5 text-slate-500 hover:bg-slate-50 hover:text-electric-blue transition-colors">
                               <Plus className="w-4 h-4" />
                             </button>
                           </div>
-                          <button 
-                            onClick={() => removeFromCart(item.id)}
-                            className="text-slate-400 hover:text-red-500 p-2 rounded-lg hover:bg-red-50 transition-colors"
-                          >
+                          <button onClick={() => removeFromCart(item.id)} className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
                             <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
                         
-                        <div className="text-right">
-                          <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-0.5">Total</p>
+                        <div className="text-right self-end sm:self-auto bg-blue-50/50 sm:bg-transparent px-3 py-2 sm:p-0 rounded-lg w-full sm:w-auto flex justify-between sm:block items-center">
+                          <p className="text-xs text-slate-500 sm:text-slate-400 font-bold uppercase tracking-wider sm:mb-0.5">Total</p>
                           <AnimatedPrice price={formatPrice(itemTotal, currency)} className="font-black text-electric-blue text-lg leading-none" />
                         </div>
                       </div>
@@ -278,9 +269,9 @@ export function CheckoutPage() {
 
           {/* Totals & Buttons */}
           <div className="bg-slate-900 rounded-3xl p-6 md:p-8 text-white shadow-xl">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-6">
               <span className="text-slate-400 font-medium text-lg">Total a pagar</span>
-              <AnimatedPrice price={formatPrice(subtotalUSD, currency)} className="text-3xl font-black text-electric-blue" />
+              <AnimatedPrice price={formatPrice(subtotalUSD, currency)} className="text-2xl sm:text-3xl font-black text-electric-blue break-words sm:break-normal" />
             </div>
             
             {!canCheckout && (
