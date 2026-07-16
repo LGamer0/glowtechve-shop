@@ -13,7 +13,7 @@ export function Header() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0)
 
   return (
-    <header className="sticky top-0 z-50 w-full glass border-b border-white/20">
+    <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex h-16 md:h-20 items-center justify-between gap-2 md:gap-6">
           {/* Logo & Brand */}
@@ -36,25 +36,38 @@ export function Header() {
 
           {/* Right actions */}
           <div className="flex items-center gap-2 md:gap-4 shrink-0">
-            {/* Wholesale Toggle */}
-            <div className="flex items-center gap-1 md:gap-2">
-              <span className={`text-[10px] md:text-xs font-bold hidden sm:inline ${!isWholesale ? 'text-electric-blue' : 'text-slate-400'}`}>Detal</span>
+            {/* Wholesale Toggle Desktop */}
+            <div className="hidden sm:flex items-center gap-2">
+              <span className={`text-xs font-bold ${!isWholesale ? 'text-electric-blue' : 'text-slate-400'}`}>Detal</span>
               <button 
                 onClick={() => setWholesale(!isWholesale)}
-                className={`w-10 h-5 md:w-12 md:h-6 rounded-full p-1 transition-colors ${isWholesale ? 'bg-electric-blue' : 'bg-slate-300'}`}
+                className={`w-12 h-6 rounded-full p-1 transition-colors ${isWholesale ? 'bg-electric-blue' : 'bg-slate-300'}`}
               >
-                <div className={`w-3 h-3 md:w-4 md:h-4 bg-white rounded-full transition-transform ${isWholesale ? 'translate-x-5 md:translate-x-6' : 'translate-x-0'}`} />
+                <div className={`w-4 h-4 bg-white rounded-full transition-transform ${isWholesale ? 'translate-x-6' : 'translate-x-0'}`} />
               </button>
-              <span className={`text-[10px] md:text-xs font-bold ${isWholesale ? 'text-electric-blue' : 'text-slate-400'}`}>Mayor</span>
+              <span className={`text-xs font-bold ${isWholesale ? 'text-electric-blue' : 'text-slate-400'}`}>Mayor</span>
             </div>
+
+            {/* Wholesale Toggle Mobile */}
+            <button 
+              onClick={() => setWholesale(!isWholesale)}
+              className={`sm:hidden px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider transition-colors border ${
+                isWholesale 
+                  ? 'bg-blue-50 text-electric-blue border-blue-200' 
+                  : 'bg-slate-50 text-slate-500 border-slate-200'
+              }`}
+            >
+              {isWholesale ? 'Al Mayor' : 'Al Detal'}
+            </button>
 
             {/* Currency Selector */}
             <div className="relative">
               <button 
                 onClick={() => setCurrencyOpen(!isCurrencyOpen)}
-                className="flex items-center gap-1 px-2 md:px-3 py-1.5 rounded-full hover:bg-slate-100/80 transition-colors text-xs md:text-sm font-bold text-slate-700"
+                className="flex items-center justify-between w-[64px] md:w-[76px] px-2 md:px-3 py-1.5 rounded-full hover:bg-slate-100/80 transition-colors text-xs md:text-sm font-bold text-slate-700"
               >
-                {currency} <ChevronDown className={`w-3 h-3 md:w-4 md:h-4 text-slate-400 transition-transform ${isCurrencyOpen ? 'rotate-180' : ''}`} />
+                <span>{currency}</span>
+                <ChevronDown className={`w-3 h-3 md:w-4 md:h-4 text-slate-400 transition-transform ${isCurrencyOpen ? 'rotate-180' : ''}`} />
               </button>
               
               <AnimatePresence>
